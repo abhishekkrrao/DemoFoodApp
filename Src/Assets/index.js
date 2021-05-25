@@ -16,7 +16,8 @@ export default {
       location: require("./icons/location.png"),
       star: require("./icons/star.png"),
       time: require("./icons/time.png"),
-      cart: require("./icons/cart.png")
+      cart: require("./icons/cart.png"),
+      back: require("./icons/back.png")
     }
   };
   

@@ -6,6 +6,17 @@ import {
     Alert
 } from "react-native";
 import assets from "../../Assets/index"
+import Storage from 'react-native-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+const storage = new Storage({
+    size: 1000,
+    storageBackend: AsyncStorage, // for web: window.localStorage
+    defaultExpires: null,
+    enableCache: true,
+    sync: {}
+});
+
 export default class HomePage extends React.Component {
     constructor(props) {
         super(props);
@@ -13,6 +24,7 @@ export default class HomePage extends React.Component {
             list: []
         }
     }
+
     render() {
         return (
             <View
@@ -52,11 +64,19 @@ export default class HomePage extends React.Component {
             list: list
         },() => { });
 
-        this.props.navigation.setParams({ handleSave: this._saveDetails });
+
+        storage.save({
+            key: 'loginState',
+            data: {
+                img: assets.appimg.food1,itemName: "Theka Khaane ka",time: "30 min",distance: "3 km",rating: "4.2",itemDesc: "Kerala, Seafood, South Indian",available: true
+            },
+            expires: null
+        });
+      
+
+
     }
-    _saveDetails() {
-        Alert("Testing")
-    }
+
     singleView(item,index) {
         return (
             <TouchableOpacity
