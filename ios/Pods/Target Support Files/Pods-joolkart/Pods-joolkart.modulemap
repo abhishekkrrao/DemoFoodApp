@@ -1,0 +1,6 @@
+module Pods_joolkart {
+  umbrella header "Pods-joolkart-umbrella.h"
+
+  export *
+  module * { export * }
+}
