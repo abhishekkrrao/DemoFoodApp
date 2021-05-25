@@ -5,6 +5,47 @@ import { HomePage,PlaceOrderPage,CartPage } from "../screens/index"
 import { Image,Button,TouchableOpacity } from "react-native"
 import assets from "../Assets/index"
 const Stack = createStackNavigator();
+const rightButton = (route,navigation) => {
+    return (
+        <TouchableOpacity
+            onPress={() => {
+                navigation.navigate("Cart List")
+            }}
+            style={{ width: 35,height: 35,marginEnd: 16,marginBottom: 5 }}>
+            <Image
+                style={{ width: 35,height: 35 }}
+                source={assets.icons.cart}
+            />
+        </TouchableOpacity>
+    );
+}
+
+const leftLogo = () => {
+    return (
+        <TouchableOpacity
+            style={{ width: 35,height: 35,marginLeft: 16,marginBottom: 20 }}>
+            <Image
+                style={{ width: 45,height: 45,borderRadius: 45 }}
+                source={assets.appimg.food5}
+            />
+        </TouchableOpacity>
+    );
+}
+const leftBackButton = (navigation) => {
+    return (
+        <TouchableOpacity
+            onPress={() => {
+                navigation.goBack()
+            }}
+            style={{ width: 75,height: 35 }}>
+            <Image
+                style={{ width: 35,height: 35,marginLeft: 16 }}
+                source={assets.icons.back}
+            />
+        </TouchableOpacity>
+    );
+}
+
 
 function Root() {
     return (
@@ -16,29 +57,10 @@ function Root() {
                     options={({ route,navigation }) => ({
                         title: "",
                         headerRight: () => {
-                            return (
-                                <TouchableOpacity
-                                    onPress={() => {
-                                        navigation.navigate("Cart List")
-                                    }}
-                                    style={{ width: 35,height: 35,marginEnd: 16,marginBottom: 5 }}>
-                                    <Image
-                                        style={{ width: 35,height: 35 }}
-                                        source={assets.icons.cart}
-                                    />
-                                </TouchableOpacity>
-                            );
+                            return rightButton(route,navigation);
                         },
                         headerLeft: () => {
-                            return (
-                                <TouchableOpacity
-                                    style={{ width: 35,height: 35,marginLeft: 16,marginBottom: 20 }}>
-                                    <Image
-                                        style={{ width: 45,height: 45 ,borderRadius:45}}
-                                        source={assets.appimg.food5}
-                                    />
-                                </TouchableOpacity>
-                            );
+                            return leftLogo();
                         }
                     })
                     }
@@ -49,18 +71,7 @@ function Root() {
                     options={({ route,navigation }) => ({
                         title: "",
                         headerLeft: () => {
-                            return (
-                                <TouchableOpacity
-                                    onPress={() => {
-                                        navigation.goBack()
-                                    }}
-                                    style={{ width: 75,height: 35 }}>
-                                    <Image
-                                        style={{ width: 35,height: 35,marginLeft: 16 }}
-                                        source={assets.icons.back}
-                                    />
-                                </TouchableOpacity>
-                            );
+                            return leftBackButton(navigation);
                         }
                     })
                     }
@@ -71,51 +82,13 @@ function Root() {
                     options={({ route,navigation }) => ({
                         title: "",
                         headerLeft: () => {
-                            return (
-                                <TouchableOpacity
-                                    onPress={() => {
-                                        navigation.goBack()
-                                    }}
-                                    style={{ width: 75,height: 35,marginLeft: 16 }}>
-                                    <Image
-                                        style={{ width: 35,height: 35 }}
-                                        source={assets.icons.back}
-                                    />
-                                </TouchableOpacity>
-                            );
+                            return leftBackButton(navigation);
                         }
                     })
                     }
                 />
             </Stack.Navigator>
         </NavigationContainer>
-    );
-}
-let navigationOptions = ({ navigation }) => {
-    const { params = {} } = navigation.state;
-    return {
-        title: '',
-        headerRight: () => (
-            <TouchableOpacity
-                onPress={() => {
-                    params.handleSave()
-                }}
-                style={{ width: 35,height: 35,marginEnd: 16,marginBottom: 5 }}>
-                <Image
-                    style={{ width: 35,height: 35 }}
-                    source={assets.icons.cart}
-                />
-            </TouchableOpacity>
-        ),
-    };
-};
-
-function LogoCart() {
-    return (
-        <Image
-            style={{ width: 50,height: 50 }}
-            source={assets.icons.cart}
-        />
     );
 }
 export default Root;
