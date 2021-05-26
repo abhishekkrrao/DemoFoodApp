@@ -72,6 +72,9 @@ function Root() {
                         title: "",
                         headerLeft: () => {
                             return leftBackButton(navigation);
+                        },
+                        headerRight: () => {
+                            return rightButton(route,navigation);
                         }
                     })
                     }

@@ -33,7 +33,7 @@ export default class HomePage extends React.Component {
                     style={{ width: "95%",height: 45,backgroundColor: "#fff",borderRadius: 9,alignSelf: "center",padding: 5,justifyContent: "center",paddingTop: 5 }}>
                     <Text
                         style={{ fontSize: 19,paddingLeft: 5 }}>
-                        {"Menu List"}</Text>
+                        {"All Restaurants Nearby"}</Text>
                 </View>
 
                 <FlatList
@@ -63,18 +63,6 @@ export default class HomePage extends React.Component {
         this.setState({
             list: list
         },() => { });
-
-
-        storage.save({
-            key: 'loginState',
-            data: {
-                img: assets.appimg.food1,itemName: "Theka Khaane ka",time: "30 min",distance: "3 km",rating: "4.2",itemDesc: "Kerala, Seafood, South Indian",available: true
-            },
-            expires: null
-        });
-      
-
-
     }
 
     singleView(item,index) {
@@ -142,13 +130,13 @@ export default class HomePage extends React.Component {
                         style={{ flex: 1,flexDirection: "row" }}>
 
                         <Text
-                            style={{ fontSize: 12,flex: 1,color: item.available ? "#76B043" : "#F37021",paddingTop: 15 }}>{item.available ? "In stock" : "Out of stock"}</Text>
+                            style={{ fontSize: 12,flex: 1,color: item.available ? "#76B043" : "#F37021",paddingTop: 5 }}>{item.available ? "In stock" : "Out of stock"}</Text>
 
                         <Text
                             onPress={() => {
 
                             }}
-                            style={{ fontSize: 12,color: "#FFCB27",paddingTop: 15,flex: 1 }}>{"Add To Cart"}</Text>
+                            style={{ fontSize: 12,color: "#FFCB27",paddingTop: 5,flex: 1 }}>{"PlaceOder"}</Text>
                     </View>
 
                 </View>
