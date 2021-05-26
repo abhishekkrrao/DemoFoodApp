@@ -1,7 +1,7 @@
 import React,{ Component } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
-import { HomePage,PlaceOrderPage,CartPage } from "../screens/index"
+import { HomePage,PlaceOrderPage,CartPage,Welcome } from "../screens/index"
 import { Image,Button,TouchableOpacity } from "react-native"
 import assets from "../Assets/index"
 const Stack = createStackNavigator();
@@ -19,7 +19,6 @@ const rightButton = (route,navigation) => {
         </TouchableOpacity>
     );
 }
-
 const leftLogo = () => {
     return (
         <TouchableOpacity
@@ -45,12 +44,19 @@ const leftBackButton = (navigation) => {
         </TouchableOpacity>
     );
 }
-
-
 function Root() {
     return (
         <NavigationContainer>
             <Stack.Navigator>
+                <Stack.Screen
+                    name="Welcome"
+                    component={Welcome}
+                    options={({ route,navigation }) => ({
+                        title: "",
+                        headerShown: false
+                    })
+                    }
+                />
                 <Stack.Screen
                     name="Home"
                     component={HomePage}

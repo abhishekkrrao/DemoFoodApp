@@ -6,13 +6,7 @@ import {
 import assets from "../../Assets/index"
 class CartPage extends Component {
     componentDidMount() {
-        let list = [
-            { img: assets.appimg.food1,itemName: "Theka Khaane ka",time: "30 min",distance: "3 km",rating: "4.2",itemDesc: "Kerala, Seafood, South Indian",available: true },
-            { img: assets.appimg.food2,itemName: "Sardar Ji Ka Sahi Special Chicken Corner",time: "50 min",distance: "5.5 km",rating: "4.2",itemDesc: "North Indian",available: true }
-        ];
-        this.setState({
-            list: list
-        },() => { });
+      
     }
     constructor(props) {
         super(props)
