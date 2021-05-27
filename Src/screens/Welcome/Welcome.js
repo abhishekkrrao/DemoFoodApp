@@ -27,7 +27,7 @@ class Welcome extends Component {
                         <Text style={{ color: "#fff",fontSize: 16,fontWeight: "500" }}>{"Manage an Order"}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
-                        onPress={() => { this.props.navigation.navigate("Cart List"); }}
+                        onPress={() => { this.props.navigation.navigate("PastOrder"); }}
                         style={{ width: "90%",height: 45,borderRadius: 10,backgroundColor: "#F37021",alignSelf: "center",marginTop: 10,justifyContent: "center",alignItems: "center" }}>
                         <Text style={{ color: "#fff",fontSize: 16,fontWeight: "500" }}>{"Order History"}</Text>
                     </TouchableOpacity>

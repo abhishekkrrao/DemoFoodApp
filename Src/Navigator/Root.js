@@ -1,7 +1,7 @@
 import React,{ Component } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
-import { HomePage,PlaceOrderPage,CartPage,Welcome } from "../screens/index"
+import { HomePage,PlaceOrderPage,CartPage,Welcome,OderHistoryPage } from "../screens/index"
 import { Image,Button,TouchableOpacity } from "react-native"
 import assets from "../Assets/index"
 const Stack = createStackNavigator();
@@ -90,6 +90,17 @@ function Root() {
                     component={CartPage}
                     options={({ route,navigation }) => ({
                         title: "",
+                        headerLeft: () => {
+                            return leftBackButton(navigation);
+                        }
+                    })
+                    }
+                />
+                <Stack.Screen
+                    name="PastOrder"
+                    component={OderHistoryPage}
+                    options={({ route,navigation }) => ({
+                        title: "Past Order",
                         headerLeft: () => {
                             return leftBackButton(navigation);
                         }
