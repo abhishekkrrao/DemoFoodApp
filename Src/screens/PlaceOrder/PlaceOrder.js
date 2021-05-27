@@ -44,6 +44,9 @@ export default class PlaceOrderPage extends React.Component {
                     />
                 </View>
 
+
+                {/* Add to cart button */}
+
                 <View
                     style={{
                         position: "absolute",bottom: 0,left: 0,right: 0,height: 96,
@@ -77,10 +80,39 @@ export default class PlaceOrderPage extends React.Component {
                 let data = [];
                 data.push(val);
                 this.setState({ list: data },() => { })
-            }
-        }).catch(() => {
+            } else {
+                let list = [
+                    { img: assets.appimg.food1,itemName: "Theka Khaane ka",time: "30 min",distance: "3 km",rating: "4.2",itemDesc: "Kerala, Seafood, South Indian",available: true },
+                    { img: assets.appimg.food2,itemName: "Sardar Ji Ka Sahi Special Chicken Corner",time: "50 min",distance: "5.5 km",rating: "4.2",itemDesc: "North Indian",available: true },
+                    { img: assets.appimg.food3,itemName: "Great Indian Khichdi",time: "28 min",distance: "4 km",rating: "4.9",itemDesc: "Indian, Home Food, Healthy Food",available: false },
+                    { img: assets.appimg.food4,itemName: "Canteen Central",time: "36 min",distance: "8 km",rating: "2.2",itemDesc: "North Indian, Snacks, South Indian, Chaa...",available: true },
+                    { img: assets.appimg.food5,itemName: "Chinese Corner",time: "30 min",distance: "6 km",rating: "3.6",itemDesc: "Chinese, Pan-Asian, Thai, Fast Food",available: true },
+                    { img: assets.appimg.food6,itemName: "Adraq",time: "45 min",distance: "2 km",rating: "3.2",itemDesc: "North Indian, Mughlai, Beverages",available: false },
+                    { img: assets.appimg.food7,itemName: "Dana Choga",time: "25 min",distance: "6 km",rating: "4.7",itemDesc: "North Indian, Chinese, Mughlai",available: true }
+                ];
+                this.setState({
+                    list: list
+                },() => {
 
-        })
+                    console.log(this.state)
+                });
+            }
+        }).catch(() => { });
+        let list = [
+            { img: assets.appimg.food1,itemName: "Theka Khaane ka",time: "30 min",distance: "3 km",rating: "4.2",itemDesc: "Kerala, Seafood, South Indian",available: true },
+            { img: assets.appimg.food2,itemName: "Sardar Ji Ka Sahi Special Chicken Corner",time: "50 min",distance: "5.5 km",rating: "4.2",itemDesc: "North Indian",available: true },
+            { img: assets.appimg.food3,itemName: "Great Indian Khichdi",time: "28 min",distance: "4 km",rating: "4.9",itemDesc: "Indian, Home Food, Healthy Food",available: false },
+            { img: assets.appimg.food4,itemName: "Canteen Central",time: "36 min",distance: "8 km",rating: "2.2",itemDesc: "North Indian, Snacks, South Indian, Chaa...",available: true },
+            { img: assets.appimg.food5,itemName: "Chinese Corner",time: "30 min",distance: "6 km",rating: "3.6",itemDesc: "Chinese, Pan-Asian, Thai, Fast Food",available: true },
+            { img: assets.appimg.food6,itemName: "Adraq",time: "45 min",distance: "2 km",rating: "3.2",itemDesc: "North Indian, Mughlai, Beverages",available: false },
+            { img: assets.appimg.food7,itemName: "Dana Choga",time: "25 min",distance: "6 km",rating: "4.7",itemDesc: "North Indian, Chinese, Mughlai",available: true }
+        ];
+        this.setState({
+            list: list
+        },() => { 
+
+            console.log(this.state)
+        }); 
     }
     singleView(item,index) {
         return (

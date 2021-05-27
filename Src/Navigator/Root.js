@@ -66,7 +66,7 @@ function Root() {
                             return rightButton(route,navigation);
                         },
                         headerLeft: () => {
-                            return leftLogo();
+                            return leftBackButton(navigation);
                         }
                     })
                     }
