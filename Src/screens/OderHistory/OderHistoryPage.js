@@ -1,12 +1,16 @@
 import React,{ Component } from 'react';
 import { View,TouchableOpacity,Dimensions,Text,Image,FlatList } from 'react-native';
 import assets from "../../Assets/index"
+import styles from './styles';
+
 class OderHistoryPage extends Component {
 
-    constructor(props){super(props);
-    this.state = {list:[]}}
+    constructor(props) {
+        super(props);
+        this.state = { list: [] }
+    }
 
-    componentDidMount(){
+    componentDidMount() {
         let list = [
             { img: assets.appimg.food1,itemName: "Theka Khaane ka",time: "30 min",distance: "3 km",rating: "4.2",itemDesc: "Kerala, Seafood, South Indian",available: true },
             { img: assets.appimg.food2,itemName: "Sardar Ji Ka Sahi Special Chicken Corner",time: "50 min",distance: "5.5 km",rating: "4.2",itemDesc: "North Indian",available: true },
@@ -18,15 +22,15 @@ class OderHistoryPage extends Component {
         ];
         this.setState({
             list: list
-        },() => { });  
+        },() => { });
     }
 
     render() {
         return (
             <View
-                style={{ flex: 1,backgroundColor:"#fff" }}>
+                style={styles.container}>
                 <FlatList
-                    style={{ alignSelf: "center",width: "100%",marginTop: 10 }}
+                    style={styles.listview}
                     numColumns={1}
                     extraData={this.state}
                     data={this.state.list}
@@ -47,18 +51,18 @@ class OderHistoryPage extends Component {
     singleView(item,index) {
         return (
             <View
-                style={{ height: 205,width: "97%",alignSelf:"center" }}>
+                style={styles.view1}>
 
                 <View
-                    style={{ width: "100%",height: 80,padding: 10 }}>
+                    style={styles.view2}>
 
                     <View
-                        style={{ flexDirection: "row",padding: 2 }}>
+                        style={styles.view3}>
                         <Text
                             style={{ fontSize: 15,textAlign: "left",flex: 1,color: "#4A4A4A" }}>{"Aggrarwal Sweets & Restaurant"}</Text>
 
                         <View
-                            style={{ flex: .3 }}>
+                            style={styles.view4}>
                             <Text
                                 style={{ fontSize: 13,textAlign: "right",color: "#76B043" }}>{"Delivered"}</Text>
                         </View>
@@ -69,12 +73,7 @@ class OderHistoryPage extends Component {
                         style={{ fontSize: 13,color: "#5A5A5A",padding: 2 }}>{"$ 215"}</Text>
                 </View>
 
-                <View style={{
-                    borderStyle: 'dotted',
-                    borderWidth: 1,
-                    borderRadius: 1,
-                    width: "95%",alignSelf: "center",borderColor: "#5A5A5A"
-                }}>
+                <View style={styles.view5}> 
                 </View>
 
                 <View
