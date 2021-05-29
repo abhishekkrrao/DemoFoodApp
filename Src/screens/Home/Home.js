@@ -65,6 +65,24 @@ export default class HomePage extends React.Component {
         },() => { });
     }
 
+
+    checkIndex(arr,item) {
+        var existingItem = arr[1];
+        var newItem = item;
+        if (!arr.some(item => item === existingItem)) {
+            arr.push(existingItem);
+        }
+        console.log(arr);
+        if (!arr.some(item => item === newItem)) {
+            arr.push(newItem);
+        }
+        console.log(arr);
+        let data = arr.filter(function (element) {
+            return element !== undefined;
+        });
+        return data;
+    }
+
     singleView(item,index) {
         return (
             <TouchableOpacity
@@ -79,7 +97,29 @@ export default class HomePage extends React.Component {
                 }}>
                 <TouchableOpacity
                     onPress={() => {
-                        this.props.navigation.navigate("Oder Detail",{ item: item });
+                        storage.load({
+                            key: "cartlist",
+                            autoSync: true,
+                            syncInBackground: true
+                        }).then((val) => {
+                            console.log("val ",val);
+                            console.log("val ",val.length);
+                            if (val && val.length > 0) {
+                                item.index = index;
+                                let data = this.checkIndex(val,item);
+                                storage.save({ key: "cartlist",data: data,expires: null }).then((val) => {
+                                    console.log(val)
+                                    this.props.navigation.navigate("Oder Detail",{ index: index });
+                                });
+                            }
+                        }).catch(() => {
+                            console.log("called")
+                            item.index = index;
+                            storage.save({ key: "cartlist",data: [item],expires: null }).then((val) => {
+                                console.log(val)
+                                this.props.navigation.navigate("Oder Detail",{ index: index });
+                            });
+                        });
                     }}
                     style={{ flex: .7 }}>
                     <Image

@@ -3,8 +3,9 @@ import { View,Text,Platform,Dimensions,Image,TouchableOpacity,FlatList } from "r
 import Storage from 'react-native-storage';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import assets from "../../Assets/index"
+import styles from "./styles";
 const storage = new Storage({
-    size: 1000,
+    size: 5000,
     storageBackend: AsyncStorage, // for web: window.localStorage
     defaultExpires: null,
     enableCache: true,
@@ -61,113 +62,76 @@ export default class PlaceOrderPage extends React.Component {
                         <Text
                             style={{
                                 color: "#fff",fontSize: 17,fontWeight: "700"
-                            }}>{"Add to Cart"}</Text>
+                            }}>{"Place Order"}</Text>
                     </TouchableOpacity>
                 </View>
             </View>
         );
     }
     componentDidMount() {
+        
+        // console.log("",this.props.route.params.index)
+
         storage.load({
-            key: 'loginState',
+            key: "cartlist",
             autoSync: true,
             syncInBackground: true
         }).then((val) => {
             console.log("val ",val);
-
             if (val) {
                 this.setState({ list: [] },() => { })
-                let data = [];
-                data.push(val);
-                this.setState({ list: data },() => { })
-            } else {
-                let list = [
-                    { img: assets.appimg.food1,itemName: "Theka Khaane ka",time: "30 min",distance: "3 km",rating: "4.2",itemDesc: "Kerala, Seafood, South Indian",available: true },
-                    { img: assets.appimg.food2,itemName: "Sardar Ji Ka Sahi Special Chicken Corner",time: "50 min",distance: "5.5 km",rating: "4.2",itemDesc: "North Indian",available: true },
-                    { img: assets.appimg.food3,itemName: "Great Indian Khichdi",time: "28 min",distance: "4 km",rating: "4.9",itemDesc: "Indian, Home Food, Healthy Food",available: false },
-                    { img: assets.appimg.food4,itemName: "Canteen Central",time: "36 min",distance: "8 km",rating: "2.2",itemDesc: "North Indian, Snacks, South Indian, Chaa...",available: true },
-                    { img: assets.appimg.food5,itemName: "Chinese Corner",time: "30 min",distance: "6 km",rating: "3.6",itemDesc: "Chinese, Pan-Asian, Thai, Fast Food",available: true },
-                    { img: assets.appimg.food6,itemName: "Adraq",time: "45 min",distance: "2 km",rating: "3.2",itemDesc: "North Indian, Mughlai, Beverages",available: false },
-                    { img: assets.appimg.food7,itemName: "Dana Choga",time: "25 min",distance: "6 km",rating: "4.7",itemDesc: "North Indian, Chinese, Mughlai",available: true }
-                ];
-                this.setState({
-                    list: list
-                },() => {
-
-                    console.log(this.state)
-                });
+                this.setState({ list: val },() => { })
             }
         }).catch(() => { });
-        let list = [
-            { img: assets.appimg.food1,itemName: "Theka Khaane ka",time: "30 min",distance: "3 km",rating: "4.2",itemDesc: "Kerala, Seafood, South Indian",available: true },
-            { img: assets.appimg.food2,itemName: "Sardar Ji Ka Sahi Special Chicken Corner",time: "50 min",distance: "5.5 km",rating: "4.2",itemDesc: "North Indian",available: true },
-            { img: assets.appimg.food3,itemName: "Great Indian Khichdi",time: "28 min",distance: "4 km",rating: "4.9",itemDesc: "Indian, Home Food, Healthy Food",available: false },
-            { img: assets.appimg.food4,itemName: "Canteen Central",time: "36 min",distance: "8 km",rating: "2.2",itemDesc: "North Indian, Snacks, South Indian, Chaa...",available: true },
-            { img: assets.appimg.food5,itemName: "Chinese Corner",time: "30 min",distance: "6 km",rating: "3.6",itemDesc: "Chinese, Pan-Asian, Thai, Fast Food",available: true },
-            { img: assets.appimg.food6,itemName: "Adraq",time: "45 min",distance: "2 km",rating: "3.2",itemDesc: "North Indian, Mughlai, Beverages",available: false },
-            { img: assets.appimg.food7,itemName: "Dana Choga",time: "25 min",distance: "6 km",rating: "4.7",itemDesc: "North Indian, Chinese, Mughlai",available: true }
-        ];
-        this.setState({
-            list: list
-        },() => { 
-
-            console.log(this.state)
-        }); 
     }
     singleView(item,index) {
         return (
             <View
-                style={{ height: 120,width: "98%",flexDirection: "row",padding: 5 }}>
+                style={styles.sView}>
+                {/* Image */}
                 <View
                     style={{ flex: .6 }}>
                     <Image
-                        style={{ width: "100%",height: 96,borderRadius: 15 }}
+                        style={styles.mImage}
                         source={assets.appimg.food1}>
-
                     </Image>
                 </View>
-
+                {/* Text */}
                 <View
-                    style={{ flex: 1.1,flexDirection: "column",padding: 5 }}>
+                    style={styles.s2View}>
                     <Text
-                        style={{ fontSize: 15,color: "#4A4A4A",fontWeight: "700",flex: 1 }}>{"" + item.itemName}</Text>
+                        style={styles.sTxt1}>{"" + item.itemName}</Text>
                     <Text
-                        style={{ color: "#F37021",fontSize: 15,fontWeight: "800",paddingTop: 10,flex: 1 }}>{"₹550"}</Text>
+                        style={styles.sTxt2}>{"₹550"}</Text>
                 </View>
-
+                {/* add and substract btns */}
                 <View
-                    style={{ flex: .3,justifyContent: "center" }}>
+                    style={styles.s3View}>
                     <View
-                        style={{ width: 60,height: 26,flexDirection: "row",backgroundColor: "#F37021",borderRadius: 5 }}>
+                        style={styles.s31View}>
                         <View
-                            style={{ flex: 1,alignItems: "center",justifyContent: "center" }}>
+                            style={styles.sAddView}>
                             <Text
-                                style={{ fontSize: 12,fontWeight: "700",color: "#fff" }}>{"+"}</Text>
+                                style={styles.sAddTxt}>{"+"}</Text>
                         </View>
                         <View
-                            style={{ flex: 1,alignItems: "center",justifyContent: "center" }}>
+                            style={styles.sAddView}>
                             <Text
-                                style={{ fontSize: 12,fontWeight: "700",color: "#fff" }}>{"1"}</Text>
+                                style={styles.sAddTxt}>{"1"}</Text>
                         </View>
                         <View
-                            style={{ flex: 1,alignItems: "center",justifyContent: "center" }}>
+                            style={styles.sAddView}>
                             <Text
-                                style={{ fontSize: 12,fontWeight: "700",color: "#fff" }}>{"-"}</Text>
+                                style={styles.sAddTxt}>{"-"}</Text>
                         </View>
                     </View>
                 </View>
-
-
             </View>
         );
     }
 
     addItemToCart(obj) {
-        storage.save({
-            key: 'loginState',
-            data: obj,
-            expires: null
-        });
+        storage.save({ key: 'loginState',  data: obj,  expires: null });
     }
 
 }
